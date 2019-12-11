@@ -62,6 +62,33 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     新建一个dev分支并进入  
     git push  
     git push --set-upstream origin dev   
-    推送到github上
+    推送到github上  
+    我现在对分支的用处大致只知道是用来合并功能的。
 * 2019-12-11  
 构建项目：
+    > vue create xxx  
+    > 创建vue.config.js配置文件
+    ```
+    css: {
+        // 是否使用css分离插件 ExtractTextPlugin
+        extract: true,
+        // 开启 CSS source maps？
+        sourceMap: false,
+        // css预设器配置项
+        loaderOptions: {
+            // sass: {data: `@import "./src/styles/main.scss";`}
+            sass: {
+                // data: `@import "./src/styles/main.scss";`
+                prependData: `@import "~@/styles/main.scss";`
+            }
+        },
+        requireModuleExtension: false
+    }
+    ```
+    > 这里有变化,和以前不同了。css的配置困扰了我一会，百度加查看官方文档才知道已经改了。   
+    不知道为什么，过一会就又出问题了，css文件处理不了。 
+    
+    新建一个styles文件夹，用来放css文件，在文件夹里新建一个main.scss，用来导入其他的css文件  
+    然后搞一个normalize.css导入到main.scss中去  
+    @import "./normalize.css";
+ 
