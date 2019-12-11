@@ -1,28 +1,4 @@
-# mcwebsite
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
+一个项目
 ---
 
 以下是开发者日志，笔记，不用阅读。
@@ -86,9 +62,90 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     }
     ```
     > 这里有变化,和以前不同了。css的配置困扰了我一会，百度加查看官方文档才知道已经改了。   
-    不知道为什么，过一会就又出问题了，css文件处理不了。 
+    不知道为什么，过一会就又出问题了，css文件处理不了，只有scss文件了。
     
     新建一个styles文件夹，用来放css文件，在文件夹里新建一个main.scss，用来导入其他的css文件  
-    然后搞一个normalize.css导入到main.scss中去  
-    @import "./normalize.css";
- 
+    然后搞一个normalize.scss导入到main.scss中去  
+    @import "./normalize.scss";
+    
+    先做一个登录界面：  
+    >height: 100vh; //占可视窗口的100%  
+    >wdith: 100vh; //占可视窗口的100%
+
+    往组件中插入图片：
+    ```
+    <template>
+      <div id="login">
+        这是登陆页面
+        <img :src="imgUrl" alt=""/>
+      </div>
+    </template>
+    <script>
+    export default {
+      name: "login",
+      data() {
+        return {
+          imgUrl: require("../../images/login.jpg")
+        };
+      }
+    };
+    </script>
+    ```
+    插入背景图片(方式1）：
+    ```
+    <template>
+      <div id="login">
+        这是登陆页面
+        <div :style="style" class="a">
+          aaa
+        </div>
+      </div>
+    </template>
+    <script>
+    export default {
+      name: "login",
+      data() {
+        return {
+          style: {
+            backgroundImage: "url(" + require("../../images/login.jpg") + ")",
+            backgroundsize: "80px 260px",
+            backgroundRepeat: "no-repeat",
+          }
+        };
+      }
+    };
+    </script>
+    <style lang="scss" scoped>
+    #login {
+    }
+    .a{
+      width: 500px;
+      height: 500px;
+    }
+    </style>
+    ```
+    插入背景图片(方式2）：
+    ```
+    <template>
+      <div id="login">
+        这是登陆页面
+        <div class="a">
+          aaa
+        </div>
+      </div>
+    </template>
+    <script>
+    export default {
+      name: "login"
+    };
+    </script>
+    <style lang="scss" scoped>
+    #login {
+    }
+    .a {
+      width: 500px;
+      height: 500px;
+      background: url("../../images/login.jpg") center center no-repeat;
+    }
+    </style>
+    ```
